@@ -1,0 +1,30 @@
+{
+  "name": "trello-releasenotes",
+  "description": "A simple nodejs trello release notes generator",
+  "author": "Norbert Eder <wpfnerd+nodejs@gmail.com>",
+  "homepage": "https://github.com/devtyr/trello-releasenotes",
+  "bugs": "https://github.com/devtyr/trello-releasenotes/issues",
+  "version": "0.1.0",
+  "license": "public domain",
+  "keywords": [
+    "trelle",
+    "release",
+    "notes"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/devtyr/trello-releasenotes.git"
+  },
+  "dependencies": {
+    "trello": ">=0.0.8",
+    "restler": ">=2.0.1",
+    "optimist": ">=0.3.4"
+  },
+  "scripts": {
+    "start": "node server.js -s"
+  },
+  "engines": {
+    "node": ">= 0.6.0"
+  },
+  "devDependencies": {}
+}
