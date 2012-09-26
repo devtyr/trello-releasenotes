@@ -11,7 +11,7 @@ var fs = require('fs');
 var trello_generator = require('./lib/cardreceiver.js');
 
 // read settings
-global.settings = JSON.parse(fs.readFileSync(path.join(__dirname, 'settings.json'), 'utf-8'));
+global.settings = require('./settings');
 settings.root   = __dirname.replace(/\/+$/, "");
 
 if (options.g || options.generate) {
