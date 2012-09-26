@@ -8,10 +8,11 @@ var options = require('optimist').argv;
 var path = require('path');
 var fs = require('fs');
 
-var trello_generator = require('./lib/generator.js');
+var trello_generator = require('./lib/cardreceiver.js');
 
 // read settings
 global.settings = JSON.parse(fs.readFileSync(path.join(__dirname, 'settings.json'), 'utf-8'));
+settings.root   = __dirname.replace(/\/+$/, "");
 
 if (options.g || options.generate) {
 

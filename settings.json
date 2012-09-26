@@ -1,5 +1,14 @@
 {
-  "applicationKey": "",
-  "userToken":      "",
-  "boardId":        ""
+  "applicationKey": "insert application key",
+  "userToken":      "insert user token",
+  "boardId":        "insert board id",
+  "strings":        
+	  {
+	  	"header" :           "Release Notes for ",
+	  	"product":           "trello-releasenotes",
+	  	"version":           "Version",
+	  	"version_number":    "0.1.0",
+	  	"generated":         "Generated on",
+	  	"subheader":         "Items included in this release"
+	  }
 }
