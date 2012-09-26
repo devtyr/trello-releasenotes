@@ -56,6 +56,10 @@ To export all release notes of list 'Done' execute
 
 Please note that the result is a `.markdown` file that can be processed with other modules like [ideamark](https://github.com/devtyr/ideamark "ideamark") or [mdserv](https://github.com/Bonuspunkt/mdserv "mdserv").
 
+### Which cards will be exported?
+
+All cards of the given list having comments that start with `RELEASE:` are exported. If there are multiple entries having this "flag", all of them are exported.
+
 ## License
 
 MIT
