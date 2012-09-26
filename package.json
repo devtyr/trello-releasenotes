@@ -4,12 +4,13 @@
   "author": "Norbert Eder <wpfnerd+nodejs@gmail.com>",
   "homepage": "https://github.com/devtyr/trello-releasenotes",
   "bugs": "https://github.com/devtyr/trello-releasenotes/issues",
-  "version": "0.1.0",
-  "license": "public domain",
+  "version": "0.2.0",
+  "license": "MIT",
   "keywords": [
-    "trelle",
+    "trello",
     "release",
-    "notes"
+    "notes",
+    "markdown"
   ],
   "repository": {
     "type": "git",
@@ -21,7 +22,7 @@
     "optimist": ">=0.3.4"
   },
   "scripts": {
-    "start": "node server.js -s"
+    "start": "node index.js -g [LISTNAME]"
   },
   "engines": {
     "node": ">= 0.6.0"
