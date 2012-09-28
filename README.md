@@ -58,7 +58,7 @@ It is also possible to export release notes of several lists. Call it like this:
 
 This will search `My List 1` and `My List 2` for cards having release notes.
 
-Please note that the result is a `.markdown` file that can be processed with other modules like [ideamark](https://github.com/devtyr/ideamark "ideamark") or [mdserv](https://github.com/Bonuspunkt/mdserv "mdserv").
+Please note that the result is a `.markdown` file that can be processed with other modules like [ideamark](https://github.com/devtyr/ideamark "ideamark") or [mdserv](https://github.com/Bonuspunkt/mdserv "mdserv"). In this combination you can directly serve your exported release notes via HTTP.
 
 ### Which cards will be exported?
 
