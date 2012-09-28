@@ -16,16 +16,31 @@ settings.root   = __dirname.replace(/\/+$/, "");
 
 if (options.g || options.generate) {
 
-	var listName = options.g;
-	if (listName) {
+	var lists = options.g;
+	if (lists.length !== undefined) {
 		trello_generator.init(settings.applicationKey, settings.userToken);
-		trello_generator.generate(listName);
+		trello_generator.generate(lists.split(','));
 	} else {
-		console.log("no [listId] given");
+		console.log('Option -g has no defined list names');
+		console.log('');
+		example();
 	}
 
 } else {
-	console.log("trello-releasenotes");
+	usage();
+	console.log('');
+	example();
+}
+
+function example() {
+	console.log('Example:');
+	console.log('    index.js -g MyList');
+	console.log('    index.js -g "Version 2.9, Version 3.0"');
+}
+
+function usage() {
+	console.log("Trello release notes generator (trello-releasenotes)");
+	console.log("");
 	console.log("Usage:");
-	console.log("index.js -g listName");
+	console.log("    index.js -g lists");
 }

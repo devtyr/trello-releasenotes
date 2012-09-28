@@ -52,7 +52,11 @@ To export all release notes of list 'Done' execute
 
 	node index.js -g Done
 
-> At the moment just one list can be exported. This will change in future versions.
+It is also possible to export release notes of several lists. Call it like this:
+
+	node index.js -g "My List 1, My List 2"
+
+This will search `My List 1` and `My List 2` for cards having release notes.
 
 Please note that the result is a `.markdown` file that can be processed with other modules like [ideamark](https://github.com/devtyr/ideamark "ideamark") or [mdserv](https://github.com/Bonuspunkt/mdserv "mdserv").
 
@@ -66,7 +70,6 @@ MIT
 
 ## Upcoming Features
 
-* Support of multiple lists
 * Generation of HTML and PDF output
 * Real templating
 
