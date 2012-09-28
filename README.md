@@ -2,8 +2,6 @@
 
 A trello release notes generator for node.js
 
-[![Build Status](https://secure.travis-ci.org/devtyr/trello-releasenotes.png)](http://travis-ci.org/devtyr/trello-releasenotes)
-
 ## Installation
 
 You can install it using `npm`.
@@ -67,14 +65,22 @@ Please note that the result is a `.markdown` file that can be processed with oth
 
 All cards of the given list having comments that start with `RELEASE:` (default) are exported. If there are multiple entries having this "flag", all of them are exported. You are able to change this setting in `settings.json`, change `releaseIdentifier` to a value you like to use.
 
-## License
-
-MIT
-
 ## Upcoming Features
 
-* Generation of HTML and PDF output
 * Real templating
+* Generation of HTML and PDF output
+
+If there are bugs or ideas for this project please leave a ticket [here](https://github.com/devtyr/trello-releasenotes/issues).
+
+## Continuous Integration status
+
+This project is tested with [Travis CI](http://travis-ci.org/).
+
+[![Build Status](https://secure.travis-ci.org/devtyr/trello-releasenotes.png)](http://travis-ci.org/devtyr/trello-releasenotes)
+
+## License
+
+trello-releasenotes is licensed under MIT.
 
 
 [![endorse](http://api.coderwall.com/devtyr/endorsecount.png)](http://coderwall.com/devtyr)
