@@ -1,7 +1,8 @@
 {
-  "applicationKey": "insert application key",
-  "userToken":      "insert user token",
-  "boardId":        "insert board id",
+  "applicationKey":    "insert application key",
+  "userToken":         "insert user token",
+  "boardId":           "insert board id",
+  "releaseIdentifier": "RELEASE:",
   "strings":        
 	  {
 	  	"header" :           "Release Notes for ",

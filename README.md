@@ -2,6 +2,8 @@
 
 A trello release notes generator for node.js
 
+[![Build Status](https://secure.travis-ci.org/devtyr/trello-releasenotes.png)](http://travis-ci.org/devtyr/trello-releasenotes)
+
 ## Installation
 
 You can install it using `npm`.
@@ -26,6 +28,7 @@ There are some settings you can set up in `settings.json`:
 	applicationKey		Insert your obtained application key from Trello to get access to it
 	userToken			Define your user token you'll receive when obtaining an application ey
 	boardId				Define the id of the board you want to search for release notes
+	releaseIdentifier   Default is set to 'RELEASE:'
 	strings				These are used to create the export, translate them into your language if you want
 
 > `version` and `product` of `strings` are used to generate the filename. 
@@ -62,7 +65,7 @@ Please note that the result is a `.markdown` file that can be processed with oth
 
 ### Which cards will be exported?
 
-All cards of the given list having comments that start with `RELEASE:` are exported. If there are multiple entries having this "flag", all of them are exported.
+All cards of the given list having comments that start with `RELEASE:` (default) are exported. If there are multiple entries having this "flag", all of them are exported. You are able to change this setting in `settings.json`, change `releaseIdentifier` to a value you like to use.
 
 ## License
 
@@ -73,3 +76,5 @@ MIT
 * Generation of HTML and PDF output
 * Real templating
 
+
+[![endorse](http://api.coderwall.com/devtyr/endorsecount.png)](http://coderwall.com/devtyr)
