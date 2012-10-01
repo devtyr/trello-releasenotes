@@ -37,15 +37,18 @@ When you open your Trello account you get a list of boards, open one of it and t
 
 	https://trello.com/board/boardname/identifier
 
-Copy `identifier` and set this one as the `boardId` in `settings.json`.
+Copy `identifier` and set this one as the `boardId` in `settings.json`. This is used to search for lists if there is no command line option that overrides that setting.
 
 ### Export
 
 To export release notes start it like shown bellow:
 
-	node index.js -g [LISTNAME]
+	node index.js -g [LISTNAME(S)]
 
-Replace `[LISTNAME]` with the name of your list that contains the cards and release note for export.
+Replace `[LISTNAME(S)]` with the name of your list that contains the cards and release note for export. In this case the configured `boardId` from `settings.json` will be used to find the internal id of `[LISTNAME(S)]`. In case you have different boards, you can override the configured `boardId` by using the `-b` option.
+
+	node index.js -g [LISTNAME(S)] -b [BOARDID]
+
 
 ### Example
 
@@ -59,11 +62,30 @@ It is also possible to export release notes of several lists. Call it like this:
 
 This will search `My List 1` and `My List 2` for cards having release notes.
 
+
 Please note that the result is a `.markdown` file that can be processed with other modules like [ideamark](https://github.com/devtyr/ideamark "ideamark") or [mdserv](https://github.com/Bonuspunkt/mdserv "mdserv"). In this combination you can directly serve your exported release notes via HTTP.
 
 ### Which cards will be exported?
 
 All cards of the given list having comments that start with `RELEASE:` (default) are exported. If there are multiple entries having this "flag", all of them are exported. You are able to change this setting in `settings.json`, change `releaseIdentifier` to a value you like to use.
+
+## Usage from other modules
+
+It is also possible to use this module from another one:
+
+	var TrelloReceiver = require('./lib/cardreceiver.js');
+
+	var lists = ["list1", "list2"];
+	var receiver = new TrelloReceiver("applicationKey", "userToken", "boardId");
+
+	receiver.receive(lists, function(err, cards) {
+		if (err) {
+			// handle error
+		}
+
+		// do something with your cards her
+	});
+
 
 ## Upcoming Features
 
