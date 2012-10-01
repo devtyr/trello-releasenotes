@@ -9,6 +9,7 @@ var path = require('path');
 var fs = require('fs');
 
 var trello_generator = require('./lib/cardreceiver.js');
+var trello_exporter = require('./lib/cardexporter.js');
 
 // read settings
 global.settings = require('./settings');
@@ -18,8 +19,19 @@ if (options.g || options.generate) {
 
 	var lists = options.g;
 	if (lists.length !== undefined) {
-		trello_generator.init(settings.applicationKey, settings.userToken);
-		trello_generator.generate(lists.split(','));
+		var generator = new trello_generator(settings.applicationKey, settings.userToken);
+		generator.receive(lists.split(','), function(err, cards) {
+			if (err) {
+				console.log(err);
+				return;
+			}
+
+			if (cards.length > 0) {
+				trello_exporter.exportCards(cards, settings.filename);
+			} else {
+				console.log("No cards having release notes found.");
+			}
+		});
 	} else {
 		console.log('Option -g has no defined list names');
 		console.log('');
