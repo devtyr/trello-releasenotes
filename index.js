@@ -8,8 +8,8 @@ var options = require('optimist').argv;
 var path = require('path');
 var fs = require('fs');
 
-var trello_generator = require('./lib/cardreceiver.js');
-var trello_exporter = require('./lib/cardexporter.js');
+var TrelloReceiver = require('./lib/cardreceiver.js');
+var TrelloExporter = require('./lib/cardexporter.js');
 
 // read settings
 global.settings = require('./settings');
@@ -18,16 +18,25 @@ settings.root   = __dirname.replace(/\/+$/, "");
 if (options.g || options.generate) {
 
 	var lists = options.g;
+	var boardId = options.b;
+
+	if (boardId && boardId.length !== undefined && boardId !== settings.boardId) {
+		console.log("Taking other board id than configured ...");
+		settings.boardId = boardId;
+	} else if (boardId) {
+		console.log("Option for board id defined, but no id given. Taking from settings.");
+	}
+
 	if (lists.length !== undefined) {
-		var generator = new trello_generator(settings.applicationKey, settings.userToken);
-		generator.receive(lists.split(','), function(err, cards) {
+		var receiver = new TrelloReceiver(settings.applicationKey, settings.userToken);
+		receiver.receive(lists.split(','), function(err, cards) {
 			if (err) {
 				console.log(err);
 				return;
 			}
 
 			if (cards.length > 0) {
-				trello_exporter.exportCards(cards, settings.filename);
+				TrelloExporter.exportCards(cards, settings.filename);
 			} else {
 				console.log("No cards having release notes found.");
 			}
