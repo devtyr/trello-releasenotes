@@ -8,7 +8,7 @@
 	  	"header" :           "Release Notes for ",
 	  	"product":           "trello-releasenotes",
 	  	"version":           "Version",
-	  	"version_number":    "0.3.0",
+	  	"version_number":    "0.4.0",
 	  	"generated":         "Generated on",
 	  	"subheader":         "Items included in this release"
 	  }
