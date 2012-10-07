@@ -1,0 +1,21 @@
+# {{header}} {{product}}
+{{version}} **{{version_number}}**
+
+{{generated}} **{{date}}**
+
+
+## {{subheader}}
+
+{{#data}}
+**{{name}}**
+{{#labels}}  `{{name}}` {{/labels}}
+
+{{#releasenotes}}
+> {{singleNote}}
+ 
+
+{{/releasenotes}}
+{{/data}}
+{{^data}}
+No release notes available!
+{{/data}}
