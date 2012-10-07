@@ -89,7 +89,6 @@ It is also possible to use this module from another one:
 
 ## Upcoming Features
 
-* Real templating
 * Generation of HTML and PDF output
 
 If there are bugs or ideas for this project please leave a ticket [here](https://github.com/devtyr/trello-releasenotes/issues).
