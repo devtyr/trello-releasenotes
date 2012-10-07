@@ -27,6 +27,9 @@ There are some settings you can set up in `settings.json`:
 	userToken			Define your user token you'll receive when obtaining an application ey
 	boardId				Define the id of the board you want to search for release notes
 	releaseIdentifier   Default is set to 'RELEASE:'
+	template			Defines the template to use
+	linkTemplate		Defines the template supporting links
+	exportLink			if true, linkTemplate will be used, otherwise template
 	strings				These are used to create the export, translate them into your language if you want
 
 > `version` and `product` of `strings` are used to generate the filename. 
@@ -86,6 +89,33 @@ It is also possible to use this module from another one:
 		// do something with your cards her
 	});
 
+## Templating
+
+**trello-releasenotes** uses [Mu - a fast, streaming Node.js Mustache engine](https://github.com/raycmorgan/Mu) as the templating engine. Have a look at the [documentation](http://mustache.github.com/mustache.5.html) to get familiar with Mustache. A simple template (it's the default of trello-releasenotes):
+
+	# {{header}} {{product}}
+	{{version}} **{{version_number}}**
+
+	{{generated}} **{{date}}**
+
+
+	## {{subheader}}
+
+	{{#data}}
+	**{{name}}**
+	{{#labels}}  `{{name}}` {{/labels}}
+
+	{{#releasenotes}}
+	> {{singleNote}}
+	 
+
+	{{/releasenotes}}
+	{{/data}}
+	{{^data}}
+	No release notes available!
+	{{/data}}
+
+As you are able to configure the used templates within `settings.json` you can add new templates easily. Otherwise feel free to change the existing ones.
 
 ## Upcoming Features
 
