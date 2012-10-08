@@ -4,7 +4,7 @@
   "author": "Norbert Eder <wpfnerd+nodejs@gmail.com>",
   "homepage": "https://github.com/devtyr/trello-releasenotes",
   "bugs": "https://github.com/devtyr/trello-releasenotes/issues",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "license": "MIT",
   "keywords": [
     "trello",
@@ -25,7 +25,6 @@
     "trello": ">=0.0.8",
     "restler": ">=2.0.1",
     "optimist": ">=0.3.4",
-    "async": ">=0.1.22",
     "mu2": ">=0.5.17"
   },
   "engines": {

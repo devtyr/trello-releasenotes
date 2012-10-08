@@ -12,11 +12,11 @@ You can install it using `npm`.
 
 First, log in to Trello and open [Generate API Keys](https://trello.com/1/appKey/generate "Generate API Keys"). You'll receive an key to use in the next step.
 
-Second, call https://trello.com/1/authorize?key=YOUR_KEY&name=trello-releasenotes&expiration=never&response_type=token to grant access for this application.
+Second, call https://trello.com/1/authorize?key=YOUR_KEY&name=trello-releasenotes&expiration=never&response_type=token to grant access for this application. Be sure to replace `YOUR_KEY` with the key received in the first step.
 
 > For further information visit: [Getting a Token from a User](https://trello.com/docs/gettingstarted/index.html#getting-a-token-from-a-user "Getting a Token from a User")
 
-Store the key and the given token in `settings.json`.
+Store the key from the first action in setting `applicationKey` of `settings.json` and the token received from the second step in `userToken`.
 
 
 ## Usage
@@ -115,6 +115,32 @@ It is also possible to use this module from another one:
 	{{/data}}
 
 As you are able to configure the used templates within `settings.json` you can add new templates easily. Otherwise feel free to change the existing ones.
+
+This is the available structure for templating:
+
+	{
+		"header": "",
+		"product": "",
+		"version": "",
+		"version_number": "",
+		"generated": "",
+		"date": "",
+		"subheader": "",
+		"data": 
+			[
+				{
+					"name": "",
+					"labels": "",
+					"link": "",
+					"releasenotes": 
+						[
+							{ "singleNote": "" }
+						]
+				}
+			]
+	}
+
+`data` is an array of all found cards. `releasenotes` is an array of all release notes found for the card.
 
 ## Upcoming Features
 
