@@ -28,8 +28,7 @@ There are some settings you can set up in `settings.json`:
 	boardId				Define the id of the board you want to search for release notes
 	releaseIdentifier   Default is set to 'RELEASE:'
 	template			Defines the template to use
-	linkTemplate		Defines the template supporting links
-	exportLink			if true, linkTemplate will be used, otherwise template
+	exportLink			if true, links are written to the exported data; the default template is able to handle that
 	strings				These are used to create the export, translate them into your language if you want
 
 > `version` and `product` of `strings` are used to generate the filename. 

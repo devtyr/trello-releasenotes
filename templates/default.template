@@ -7,7 +7,12 @@
 ## {{subheader}}
 
 {{#data}}
+{{#link}}
+**[{{name}}]({{link}} "{{name}}")**
+{{/link}}
+{{^link}}
 **{{name}}**
+{{/link}}
 {{#labels}}  `{{name}}` {{/labels}}
 
 {{#releasenotes}}

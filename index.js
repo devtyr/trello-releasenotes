@@ -60,7 +60,7 @@ function start() {
 		}
 
 		if (cards.length > 0) {
-			var exporter = new TrelloExporter(path.join(__dirname, "templates"), (settings.exportLinks ? settings.linkTemplate : settings.template));
+			var exporter = new TrelloExporter(path.join(__dirname, "templates"), settings.template);
 			exporter.exportCards(cards, settings.filename);
 		} else {
 			console.log("No cards having release notes found.");

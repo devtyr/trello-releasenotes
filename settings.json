@@ -4,7 +4,6 @@
   "boardId":           "insert board id",
   "releaseIdentifier": "RELEASE:",
   "template":          "default.template",
-  "linkTemplate":      "default.link.template",
   "exportLinks":       true,
   "strings":        
 	  {
