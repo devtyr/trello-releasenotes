@@ -5,6 +5,7 @@
   "releaseIdentifier": "RELEASE:",
   "template":          "default.template",
   "exportLinks":       true,
+  "exportPath":        "",
   "strings":        
 	  {
 	  	"header" :           "Release Notes for ",

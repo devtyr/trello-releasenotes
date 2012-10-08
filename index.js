@@ -22,7 +22,20 @@ var TrelloExporter = require('./lib/cardexporter.js');
 
 // read settings
 global.settings = require('./settings');
-settings.root   = __dirname.replace(/\/+$/, "");
+fs.exists(settings.exportPath, function(exists) {
+	if (exists) {
+		settings.root = settings.exportPath;
+	}
+	else {
+		settings.root = path.join(__dirname.replace(/\/+$/, ""), "export");
+
+		var exists = fs.existsSync(settings.root);
+		if (!exists) {
+			fs.mkdirSync(directory, 0666);
+		}
+	}
+});
+
 
 var lists = options.g;
 var boardId = options.b;
@@ -61,7 +74,7 @@ function start() {
 
 		if (cards.length > 0) {
 			var exporter = new TrelloExporter(path.join(__dirname, "templates"), settings.template);
-			exporter.exportCards(cards, settings.filename);
+			exporter.exportCards(cards);
 		} else {
 			console.log("No cards having release notes found.");
 		}
