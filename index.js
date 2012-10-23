@@ -1,7 +1,7 @@
 /*
  * Trello release notes generator
  *
- * Author: Norbert Eder <wpfnerd+nodejs@gmail.com
+ * Author: Norbert Eder <wpfnerd+nodejs@gmail.com>
  */
 
 var options = require('optimist')
@@ -17,8 +17,9 @@ var options = require('optimist')
 var path = require('path');
 var fs = require('fs');
 
-var TrelloReceiver = require('./lib/cardreceiver.js');
-var TrelloExporter = require('./lib/cardexporter.js');
+var TrelloReceiver = require('./lib/cardreceiver');
+var Converter = require('./lib/converter');
+var Generator = require('./lib/datagenerator');
 
 // read settings
 global.settings = require('./settings');
@@ -41,7 +42,7 @@ var lists = options.g;
 var boardId = options.b;
 
 if (boardId) {
-	if (boardId.length !== undefined) {
+	if (boardId.length) {
 		console.log("Taking other board id than configured ...");
 		settings.boardId = boardId;
 	} else {
@@ -49,7 +50,7 @@ if (boardId) {
 	}
 }
 
-if (lists.length !== undefined) {
+if (lists.length) {
 	start();
 } else {
 	console.log('Option -g has no defined list names');
@@ -73,10 +74,27 @@ function start() {
 		}
 
 		if (cards.length > 0) {
-			var exporter = new TrelloExporter(path.join(__dirname, "templates"), settings.template);
-			exporter.exportCards(cards);
+			var converter = new Converter(path.join(__dirname, "templates"));
+			var data = Generator.generateData(cards);
+			converter.convert(data, settings.template, function(error, data) {
+				if (error) {
+					console.log(error);
+				}
+				else {
+					save(data);
+				}
+			});
 		} else {
 			console.log("No cards having release notes found.");
 		}
+	});
+}
+
+function save(content) {
+	var filename = path.join(settings.root, settings.strings.product.replace(' ', '_') + "_" + settings.strings.version_number.replace('.','_') + '.markdown');
+
+	fs.writeFile(filename, content, function(err) {
+		if (err) throw err;
+		console.log("Release notes exported successfully");
 	});
 }

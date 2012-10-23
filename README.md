@@ -85,7 +85,7 @@ It is also possible to use this module from another one:
 			// handle error
 		}
 
-		// do something with your cards her
+		// do something with your cards here
 	});
 
 ## Templating
@@ -145,6 +145,7 @@ This is the available structure for templating:
 ## Upcoming Features
 
 * Generation of HTML and PDF output
+* Option to receive all lists for configured/specified board id
 
 If there are bugs or ideas for this project please leave a ticket [here](https://github.com/devtyr/trello-releasenotes/issues).
 
