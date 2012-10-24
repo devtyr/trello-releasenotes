@@ -28,7 +28,7 @@
     "mu2": ">=0.5.17"
   },
   "engines": {
-    "node": ">= 0.6.0"
+    "node": ">= 0.8.0"
   },
   "devDependencies": {
     "nodeunit": ">=0.7.4"
