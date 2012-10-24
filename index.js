@@ -35,7 +35,7 @@ fs.exists(settings.exportPath, function(exists) {
 
 		var exists = fs.existsSync(settings.root);
 		if (!exists) {
-			fs.mkdirSync(directory, 0666);
+			fs.mkdirSync(settings.root, 0666);
 		}
 	}
 });
