@@ -6,14 +6,17 @@
 
 var options = require('optimist')
 			  .usage('Generate release notes from Trello cards.\n\nUsage: $0')
-			  .demand('g')
 			  .alias('g', 'generate')
 			  .describe('g', 'Generate from list names')
 			  .string('g')
 			  .alias('b', 'boardid')
 			  .describe('b', 'The board id from Trello')
 			  .string('b')
-			  .argv;
+			  .alias('l', 'list')
+			  .describe('l', 'Show lists of given board. Default: all. Possible: open, closed, all')
+			  .string('l');
+var optionArgs = options.argv;
+
 var path = require('path');
 var fs = require('fs');
 
@@ -38,8 +41,9 @@ fs.exists(settings.exportPath, function(exists) {
 });
 
 
-var lists = options.g;
-var boardId = options.b;
+var lists = optionArgs.g;
+var boardId = optionArgs.b;
+var showLists = optionArgs.l;
 
 if (boardId) {
 	if (boardId.length) {
@@ -50,12 +54,20 @@ if (boardId) {
 	}
 }
 
-if (lists.length) {
+if (showLists) {
+	if (showLists.length) {
+		getLists(showLists);
+	} else {
+		getLists('all');
+	}
+} else if (lists && lists.length) {
 	start();
-} else {
+} else if (lists && !lists.length) {
 	console.log('Option -g has no defined list names');
 	console.log('');
 	example();
+} else {
+	options.showHelp();
 }
 
 function example() {
@@ -65,20 +77,36 @@ function example() {
 	console.log('    index.js -g "Version 2.9, Version 3.0" -b "theboardid"');
 }
 
+function getLists(filter) {
+	var receiver = new TrelloReceiver(settings.applicationKey, settings.userToken, settings.boardId);
+	receiver.getLists(filter, function(error,data) {
+		if (error) {
+			console.log(error instanceof Error ? error.message : error);
+		} else {
+			if (data) {
+				for (var i = 0; i < data.length; i++) {
+					console.log((data[i].closed ? '[closed] ' : '[open]   ') + data[i].id + ' ' + data[i].name);
+				}
+			}
+			
+		}
+	});
+}
+
 function start() {
 	var receiver = new TrelloReceiver(settings.applicationKey, settings.userToken, settings.boardId);
 	receiver.receive(lists.split(','), function(err, cards) {
 		if (err) {
-			console.log(err);
+			console.log(err instanceof Error ? err.message : err);
 			return;
 		}
 
 		if (cards.length > 0) {
 			var converter = new Converter(path.join(__dirname, "templates"));
 			var data = Generator.generateData(cards);
-			converter.convert(data, settings.template, function(error, data) {
-				if (error) {
-					console.log(error);
+			converter.convert(data, settings.template, function(convertError, data) {
+				if (convertError) {
+					console.log(convertError instanceof Error ? convertError.message : convertError);
 				}
 				else {
 					save(data);

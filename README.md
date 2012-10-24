@@ -71,9 +71,23 @@ Please note that the result is a `.markdown` file that can be processed with oth
 
 All cards of the given list having comments that start with `RELEASE:` (default) are exported. If there are multiple entries having this "flag", all of them are exported. You are able to change this setting in `settings.json`, change `releaseIdentifier` to a value you like to use.
 
+> Please note that all lists (also archived ones) are considered.
+
+### Show available lists
+
+In some cases it is very helpful to view the lists available within the configured board. To get an overview use the option `-l` or `--list`:
+
+	node index.js -l
+
+This will come up with a complete list, showing the status (open, closed), list id and the name. It's also possible to get a list of a specific status. This options are available:
+
+	node index.js -l all       The same as -l without a parameter
+	node index.js -l open      Shows all lists that are not archived.
+	node index.js -l closed    Shows all archieved lists
+
 ## Usage from other modules
 
-It is also possible to use this module from another one:
+It is also possible to use this module from another one. For example to receive all cards having release notes for the specified lists:
 
 	var TrelloReceiver = require('./lib/cardreceiver.js');
 
@@ -87,6 +101,28 @@ It is also possible to use this module from another one:
 
 		// do something with your cards here
 	});
+
+It's also possible to work with lists:
+
+	receiver.getLists(filter, function(error,data) {
+		if (error) {
+			console.log(error instanceof Error ? error.message : error);
+		} else {
+			if (data) {
+				for (var i = 0; i < data.length; i++) {
+					console.log((data[i].closed ? '[closed] ' : '[open]   ') + data[i].id + ' ' + data[i].name);
+				}
+			}
+			
+		}
+	});
+
+The filter defines (if set) which lists to be received. Possible values based on the Trello API:
+
+- none
+- open
+- closed
+- all
 
 ## Templating
 
