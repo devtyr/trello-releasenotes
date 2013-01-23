@@ -52,6 +52,9 @@ Replace `[LISTNAME(S)]` with the name of your list that contains the cards and r
 
 	node index.js -g [LISTNAME(S)] -b [BOARDID]
 
+If you want to run a job updating your release notes it might be helpful to set the version by an parameter. This can be done by using the parameter `-v`.
+
+	node index.js -g [LISTNAME(S)] -b [BOARDID] -v [VERSION]
 
 ### Example
 
