@@ -39,7 +39,7 @@
         <ul></ul>
       </nav>
       <section>
-        <p>Generate release notes from Trello cards easily.</p>
+        <p>A trello release notes generator for node.js</p>
 
 <h2>Installation</h2>
 
@@ -97,6 +97,11 @@ strings             These are used to create the export, translate them into you
 <p>Replace <code>[LISTNAME(S)]</code> with the name of your list that contains the cards and release note for export. In this case the configured <code>boardId</code> from <code>settings.json</code> will be used to find the internal id of <code>[LISTNAME(S)]</code>. In case you have different boards, you can override the configured <code>boardId</code> by using the <code>-b</code> option.</p>
 
 <pre><code>node index.js -g [LISTNAME(S)] -b [BOARDID]
+</code></pre>
+
+<p>If you want to run a job updating your release notes it might be helpful to set the version by an parameter. This can be done by using the parameter <code>-v</code>.</p>
+
+<pre><code>node index.js -g [LISTNAME(S)] -b [BOARDID] -v [VERSION]
 </code></pre>
 
 <h3>Example</h3>
