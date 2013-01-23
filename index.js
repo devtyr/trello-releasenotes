@@ -14,7 +14,10 @@ var options = require('optimist')
 			  .string('b')
 			  .alias('l', 'list')
 			  .describe('l', 'Show lists of given board. Default: all. Possible: open, closed, all')
-			  .string('l');
+			  .string('l')
+			  .alias('v', 'version')
+			  .describe('v', 'Product version')
+			  .string('v');
 var optionArgs = options.argv;
 
 var path = require('path');
@@ -44,6 +47,16 @@ fs.exists(settings.exportPath, function(exists) {
 var lists = optionArgs.g;
 var boardId = optionArgs.b;
 var showLists = optionArgs.l;
+var version = optionArgs.v;
+
+if (version){
+	if (version.length) {
+		console.log("Taking other version than configured ...");
+		settings.strings.version_number = version;
+	} else {
+		console.log("Option for version defined, but no version given. Taking from settings.");
+	}
+}
 
 if (boardId) {
 	if (boardId.length) {
@@ -119,7 +132,7 @@ function start() {
 }
 
 function save(content) {
-	var filename = path.join(settings.root, settings.strings.product.replace(' ', '_') + "_" + settings.strings.version_number.replace('.','_') + '.markdown');
+	var filename = path.join(settings.root, settings.strings.product.replace(' ', '_') + "_" + settings.strings.version_number.replace(/\./gi,'_') + '.markdown');
 
 	fs.writeFile(filename, content, function(err) {
 		if (err) throw err;
