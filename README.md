@@ -30,6 +30,7 @@ There are some settings you can set up in `settings.json`:
 	template			Defines the template to use
 	exportLinks			if true, links are written to the exported data; the default template is able to handle that
 	exportPath			Set a path if release notes should be exported to a specific path
+	titleReplacePattern A replace regular expression to replace parts of the title (export)
 	strings				These are used to create the export, translate them into your language if you want
 
 > `version` and `product` of `strings` are used to generate the filename. 

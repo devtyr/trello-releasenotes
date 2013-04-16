@@ -1,11 +1,12 @@
 {
-  "applicationKey":    "insert application key",
-  "userToken":         "insert user token",
-  "boardId":           "insert board id",
-  "releaseIdentifier": "RELEASE:",
-  "template":          "default.template",
-  "exportLinks":       true,
-  "exportPath":        "",
+  "applicationKey":    		"insert application key",
+  "userToken":         		"insert user token",
+  "boardId":           		"insert board id",
+  "releaseIdentifier": 		"RELEASE:",
+  "template":          		"default.template",
+  "exportLinks":       		true,
+  "exportPath":        		"",
+  "titleReplacePattern": 	"",
   "strings":        
 	  {
 	  	"header" :           "Release Notes for ",
