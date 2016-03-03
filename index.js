@@ -28,7 +28,11 @@ var Converter = require('./lib/converter');
 var Generator = require('./lib/datagenerator');
 
 // read settings
-global.settings = require('./settings');
+try {
+	global.settings = require('../../settings');
+} catch (err) {
+	global.settings = require('./settings');
+}
 fs.exists(settings.exportPath, function(exists) {
 	if (exists) {
 		settings.root = settings.exportPath;
